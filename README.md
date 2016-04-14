@@ -34,7 +34,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO Describe railman usage
+Run `railman new APP_NAME` to create new rails application.
 
 
 ## Development
