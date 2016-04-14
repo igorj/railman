@@ -12,8 +12,8 @@
 [codeclimate]: https://codeclimate.com/github/igorj/railman
 [coveralls]: https://coveralls.io/r/igorj/railman
 
+Railman generates new rails applications based on a customized template. Railman is currently work in progress. 
 
-TODO Description of Railman
 
 ## Installation
 
@@ -31,9 +31,11 @@ Or install it yourself as:
 
     $ gem install railman
 
+
 ## Usage
 
-TODO Describe how to use this gem
+TODO Describe railman usage
+
 
 ## Development
 
@@ -43,9 +45,11 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 To release a new version, run `bundle exec rake release_patch`, `bundle exec rake release_minor`, oder `bundle exec rake release_major`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to https://rubygems.org.
 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on github at https://github.com/igorj/railman.
+
 
 ## License
 

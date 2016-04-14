@@ -5,9 +5,9 @@ module Railman
   class CLI < Thor
     include Thor::Actions
 
-    desc "do_something NAME", "TODO task description"
-    def do_something(name)
-      puts "TODO do something with: #{name}"
+    desc "new APPNAME", "Create new rails application named APPNAME"
+    def new(name)
+      puts "TODO create new rails application: #{name}"
     end
   end
 end

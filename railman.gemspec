@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.version       = Railman::VERSION
   spec.authors       = ["Igor Jancev"]
   spec.email         = ["igor@masterybits.com"]
-  spec.summary       = %q{TODO Summary what the gem is for}
-  spec.description   = %q{TODO Longer description of the gem}
+  spec.summary       = %q{Rails application generator}
+  spec.description   = %q{Rails application generator that speeds up develoment of new rails applications}
   spec.homepage      = "https://github.com/igorj/railman"
   spec.license       = "MIT"
 
@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest-reporters", "~> 1.1"
   spec.add_development_dependency "gem-release", "~> 0.7"
   spec.add_development_dependency "geminabox", "~> 0.13"
-  spec.add_dependency "thor", "~> 0.19"
 
+  spec.add_dependency "thor", "~> 0.19"
 end
