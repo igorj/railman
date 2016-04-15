@@ -11,7 +11,7 @@ Rails.application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -76,4 +76,22 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: ENV['SMTP_SERVER'],
+    user_name: ENV['SMTP_USER'],
+    password: ENV['SMTP_PASSWORD'],
+    domain: ENV['SMTP_DOMAIN'],
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
+  config.action_mailer.default_url_options = { host: ENV['SMTP_DEFAULT_URL'] }
+
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: ENV['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
+      sender_address: ENV['EXCEPTION_NOTIFICATION_SENDER'],
+      exception_recipients: ENV['EXCEPTION_NOTIFICATION_RECIPIENT']
+    }
 end

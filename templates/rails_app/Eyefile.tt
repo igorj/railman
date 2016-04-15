@@ -1,0 +1,40 @@
+# Eye configuration file (https://github.com/kostya/eye)
+# Load with: 'eye l Eyefile'
+# Watch processes: 'eye w'
+# Stop all processes: 'eye stop <%= app_name %>'
+# Start all processes: 'eye start <%= app_name %>'
+# Restart unicorn: 'eye restart <%= app_name %>:unicorn'
+
+APP_ROOT = File.expand_path('..', __FILE__)
+
+Eye.load '.env'
+
+Eye.config do
+  logger File.join APP_ROOT, 'log/eye.log'
+end
+
+Eye.application APP_NAME do
+  working_dir APP_ROOT
+  auto_start false
+  notify :errors
+
+  trigger :flapping, times: 3, within: 1.minute, retry_in: 1.minutes, retry_times: 1
+
+  process :unicorn do
+    unicorn_env = { 'RAILS_ENV' => RAILS_ENV, 'UNICORN_WORKERS' => UNICORN_WORKERS }
+    unicorn_env['UNICORN_PORT'] = UNICORN_PORT if defined?(UNICORN_PORT)
+    unicorn_env['UNICORN_SOCK'] = UNICORN_SOCK if defined?(UNICORN_SOCK)
+    env unicorn_env
+    start_command "./bin/unicorn -c #{APP_ROOT}/config/unicorn.rb -E #{RAILS_ENV} -D"
+    pid_file './tmp/pids/unicorn.pid'
+    stop_signals [:QUIT, 10.seconds, :KILL]
+    restart_command 'kill -USR2 {PID}'
+
+    start_timeout 100.seconds
+    restart_grace 30.seconds
+
+    monitor_children do
+      stop_command 'kill -QUIT {PID}'
+    end
+  end
+end
