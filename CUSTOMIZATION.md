@@ -53,3 +53,19 @@ Add smtp settings and exception notification settings
 ## config/environments/test.rb
 
 Add config.action_mailer.default_url_options
+
+## config/locales/readme.txt
+
+Describes how to add additional languages
+
+## config/server/nginx.conf
+
+Nginx configuration. Capistrano links this file in the nginx conf.
+
+## config/server/logrotate.conf
+
+Logrotate configuration. Capistrano links this file ...
+
+## config/server/letsencrypt.conf
+
+Let's Encrypt configuration file that can be used to automatically generate Let's Encrypt SSL certificates.
