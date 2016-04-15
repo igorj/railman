@@ -1,0 +1,10 @@
+/home/deploy/apps/<%= app_name %>/log/*.log {
+  daily
+  missingok
+  rotate 9
+  size 5M
+  compress
+  delaycompress
+  notifempty
+  copytruncate
+}
