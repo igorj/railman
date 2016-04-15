@@ -17,6 +17,16 @@ module Railman
       say "Create a new rails application named: #{app_name}", :green
       @app_name = app_name
       @class_name = Thor::Util.camel_case(app_name)
+      @admin_email = ask("What is the adminitrator email address?")
+      @domain = ask("What is the url of the application (without http and www)?")
+      if yes?("Do you want me to configure www.#{@domain} domain to be redirected to #{@domain}? (y/n)")
+        @www_domain = "www.#{@domain}"
+        @domains = [@domain, @www_domain]
+      else
+        @www_domain = nil
+        @domains = [@domain]
+      end
+      @server = ask("What is the name of the production server?")
       directory "rails_app", app_name
       Dir.chdir app_name do
       #  create_local_git_repository
