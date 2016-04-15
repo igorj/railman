@@ -92,6 +92,6 @@ Rails.application.configure do
     email: {
       email_prefix: ENV['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
       sender_address: ENV['EXCEPTION_NOTIFICATION_SENDER'],
-      exception_recipients: ENV['EXCEPTION_NOTIFICATION_RECIPIENT']
+      exception_recipients: ENV['ADMIN_EMAIL']
     }
 end
