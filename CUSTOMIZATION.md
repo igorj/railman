@@ -69,3 +69,13 @@ Logrotate configuration. Capistrano links this file ...
 ## config/server/letsencrypt.conf
 
 Let's Encrypt configuration file that can be used to automatically generate Let's Encrypt SSL certificates.
+
+## config/database.yml
+
+Use postgres. 
+Use database user and password from .env 
+ 
+## config/secrets.yml
+ 
+Use SECRET_TOKEN from .env
+
