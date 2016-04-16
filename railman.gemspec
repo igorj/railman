@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "minitest-reporters", "~> 1.1"
   spec.add_development_dependency "gem-release", "~> 0.7"
   spec.add_development_dependency "geminabox", "~> 0.13"
+  spec.add_development_dependency "coveralls"
 
   spec.add_dependency "thor", "~> 0.19"
 end
