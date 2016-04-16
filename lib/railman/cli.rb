@@ -1,9 +1,10 @@
 require 'thor'
-require 'railman'
+require 'creategem'
 
 module Railman
   class CLI < Thor
     include Thor::Actions
+    include Creategem::Git
 
     attr_accessor :app_name
 
@@ -28,10 +29,14 @@ module Railman
       end
       @server = ask("What is the name of the production server?")
       directory "rails_app", app_name
+      repository = Creategem::Repository.new(vendor: :bitbucket,
+                                             user: git_repository_user_name(:bitbucket),
+                                             name: app_name,
+                                             gem_server_url: gem_server_url(:bitbucket))
       Dir.chdir app_name do
-      #  create_local_git_repository
+        create_local_git_repository
         run "bundle install"
-      #  create_remote_git_repository(@repository)
+        create_remote_git_repository(repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
       end
       say "The rails application '#{app_name}' was successfully created.", :green
     end
