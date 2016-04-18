@@ -1,5 +1,6 @@
 require 'thor'
 require 'creategem'
+require 'railman/secret'
 
 module Railman
   class CLI < Thor
@@ -28,17 +29,21 @@ module Railman
         @domains = [@domain]
       end
       @server = ask("What is the name of the production server?")
+      @repository = Creategem::Repository.new(vendor: :bitbucket,
+                                              user: git_repository_user_name(:bitbucket),
+                                              name: app_name,
+                                              gem_server_url: gem_server_url(:bitbucket))
+      @rake_secret = "TODO: generate with: rake secret"
       directory "rails_app", app_name
-      repository = Creategem::Repository.new(vendor: :bitbucket,
-                                             user: git_repository_user_name(:bitbucket),
-                                             name: app_name,
-                                             gem_server_url: gem_server_url(:bitbucket))
+      @rake_secret = Railman::Secret.generate_secret
+      template "rails_app/.env.example.tt", "#{app_name}/.env"
       Dir.chdir app_name do
-        create_local_git_repository
         run "bundle install"
-        create_remote_git_repository(repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
+        create_local_git_repository
+        create_remote_git_repository(@repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
       end
       say "The rails application '#{app_name}' was successfully created.", :green
+      say "Please check the settings in .env", :blue
     end
 
     desc "update APPNAME", "Update the rails upplication named APPNAME"
