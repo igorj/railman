@@ -1,47 +1,58 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use SCSS for stylesheets
+gem 'pg', '0.18.2'
+
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jquery-turbolinks'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-sass', '3.3.4.1'
+gem 'bootstrap_form', '2.3.0'    # form helper for twitter bootstrap
+gem 'bootstrap-datepicker-rails', '1.4.0'     # bootstrap-datepicker
+gem 'active_link_to', '1.0.3'    # automatically mark navigation link as active
 
-# Use Unicorn as the app server
-# gem 'unicorn'
+gem 'dalli'   # memcached client
+gem 'kgio'    # gives dalli 20-30% performance boost
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+# todo add sidekiq for backgroud jobs
 
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
-end
+gem 'unicorn', '4.8.3'  # use unicorn as production server
+gem 'unicorn-rails', '1.1.0'  # use unicorn as local server
+
+# capistrano deployment
+gem 'capistrano', '3.1.0'
+gem 'capistrano-rails', '1.1.1'
+gem 'capistrano-rbenv', '2.0.2'
+gem 'capistrano-bundler', '1.1.2'
+
+gem 'exception_notification', '4.1.2' # exception notification per email
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'better_errors'   # better error pages in development
+  gem 'binding_of_caller'   # repl on the error page
+  gem 'spring'    # Spring speeds up development by keeping your application running in the background
+  gem 'quiet_assets'    # less noise in development log
+  # gem 'rack-mini-profiler'
+  # gem 'flamegraph'    # mini-profiler flamegraph extension (?pp=flamegraph)
 end
+
+group :test do
+  gem 'minitest-reporters', '1.1.7'   # generate xml for jenkins
+  gem 'simplecov', require: false     # generate coverage reports
+  gem 'simplecov-rcov', '0.2.3', require: false   # generate coverage reports for jenkins
+  gem 'capybara', '2.6.0'   # dsl for browser tests
+  gem 'capybara_minitest_spec', '1.0.5'   # capybara rspec-style matchers (must_have...)
+  gem 'selenium-webdriver', '2.49.0'      # use real browser for webtests
+  gem 'poltergeist', '1.8.1'      # headless tests with phantom.js
+end
+
+# put additional application-specific gems to Gemfile.local
+local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
+eval_gemfile(local_gemfile) if File.exists?(local_gemfile)
 
