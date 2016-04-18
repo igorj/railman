@@ -34,8 +34,10 @@ module Railman
                                               name: app_name,
                                               gem_server_url: gem_server_url(:bitbucket))
       @rake_secret = "TODO: generate with: rake secret"
+      @unicorn_behind_nginx = true
       directory "rails_app", app_name
       @rake_secret = Railman::Secret.generate_secret
+      @unicorn_behind_nginx = false
       template "rails_app/.env.example.tt", "#{app_name}/.env"
       Dir.chdir app_name do
         run "bundle install"

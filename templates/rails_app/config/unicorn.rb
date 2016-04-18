@@ -5,13 +5,13 @@ APP_ROOT = File.expand_path('../..', __FILE__)
 require 'dotenv'
 Dotenv.load
 
-timeout Integer(ENV['UNICORN_TIMEOUT'])
-if ENV['UNICORN_SOCK'] # behind nginx
-  listen ENV['UNICORN_SOCK']
+timeout Integer(ENV['UNICORN_TIMEOUT'] || 60)
+if ENV['UNICORN_BEHIND_NGINX']
+  listen '/tmp/unicorn.<%= app_name %>.sock'
 else
-  listen Integer(ENV['UNICORN_PORT'])
+  listen Integer(ENV['UNICORN_PORT'] || 3000)
 end
-worker_processes Integer(ENV['UNICORN_WORKERS'])
+worker_processes Integer(ENV['UNICORN_WORKERS'] || 1)
 working_directory APP_ROOT
 pid "#{APP_ROOT}/tmp/pids/unicorn.pid"
 
