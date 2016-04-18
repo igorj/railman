@@ -12,4 +12,4 @@ Try to keep all the application/server/environment specific settings, as well as
 
 ## create local database
 
-todo: rake tasks
+Run `rake db:create`
