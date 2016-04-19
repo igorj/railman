@@ -59,6 +59,7 @@ server {
   return 301 https://<%= @domain %>$request_uri;
 }
 
+<% if @www_domain %>
 server {
   listen 443 ssl;
   server_name <%= @www_domain %>;
@@ -68,3 +69,4 @@ server {
   ssl_certificate /etc/letsencrypt/live/<%= @domain %>/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/<%= @domain %>/privkey.pem;
 }
+<% end %>
