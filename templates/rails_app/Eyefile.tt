@@ -21,9 +21,10 @@ Eye.application APP_NAME do
   trigger :flapping, times: 3, within: 1.minute, retry_in: 1.minutes, retry_times: 1
 
   process :unicorn do
-    unicorn_env = { 'RAILS_ENV' => RAILS_ENV, 'UNICORN_WORKERS' => UNICORN_WORKERS }
+    unicorn_env = { 'RAILS_ENV' => RAILS_ENV, 'UNICORN_BEHIND_NGINX' => UNICORN_BEHIND_NGINX }
+    unicorn_env['UNICORN_WORKERS'] = UNICORN_WORKERS if defined?(UNICORN_WORKERS)
+    unicorn_env['UNICORN_TIMEOUT'] = UNICORN_TIMEOUT if defined?(UNICORN_TIMEOUT)
     unicorn_env['UNICORN_PORT'] = UNICORN_PORT if defined?(UNICORN_PORT)
-    unicorn_env['UNICORN_SOCK'] = UNICORN_SOCK if defined?(UNICORN_SOCK)
     env unicorn_env
     start_command "./bin/unicorn -c #{APP_ROOT}/config/unicorn.rb -E #{RAILS_ENV} -D"
     pid_file './tmp/pids/unicorn.pid'
