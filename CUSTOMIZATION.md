@@ -47,9 +47,9 @@ The configuration of the processes that the application includes (app server, wo
 
 The eye gem is not included in the Gemfile. Eye should be installed globally on the server or your local machine and there will be only one eye process that manages multiple rails applications.  
 
-## .env.example
+## .env.example.development and .env.example.production
 
-This is a template for the application- and server-specific .env file.  
+These are templates for the application- and server-specific .env file (for development and production).  
 
 ## config/deploy/production.rb
 
