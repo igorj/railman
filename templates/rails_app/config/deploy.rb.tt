@@ -45,12 +45,10 @@ task :setup do
           execute :eye, :start, fetch(:application)
           execute :service, "nginx restart"
         else
-          warn "TODO 1: Create .env on the server by copying from .env.example.production and modify your database and smtp settings."
-          warn "TODO 2: Create rails secret token with 'rake secret' and insert it into .env"
-          warn "TODO 3: Check if you have ssl certificates for #{fetch(:application)} in /etc/letsencrypt/live/<%= @domain %>"
-          warn "TODO 4: If not, create ssl certificates by running the following command as root: "
-          warn "        /opt/letsencrypt/letsencrypt-auto --config /etc/nginx/letsencrypt/#{fetch(:application)}.conf --standalone certonly"
-          warn "TODO 5: Run 'cap ENV setup' again!"
+          warn "TODO: Create .env on the server by copying from .env.example.production and modify your database and smtp settings."
+          warn "TODO: Create rails secret token with 'rake secret' and insert it into .env"
+          warn "TODO: Create ssl certificates by running the following command as root: /etc/letsencrypt/generate_letsencrypt.sh"
+          warn "TODO: Run 'cap ENV setup' again!"
         end
       end
     end
