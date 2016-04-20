@@ -41,6 +41,7 @@ module Railman
       template "rails_app/.env.example.development.tt", "#{app_name}/.env"
       Dir.chdir app_name do
         run "bundle install"
+        run "chmod +x bin/*"
         create_local_git_repository
         create_remote_git_repository(@repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
       end
