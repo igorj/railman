@@ -33,6 +33,7 @@ group :development do
   gem 'better_errors'   # better error pages in development
   gem 'binding_of_caller'   # repl on the error page
   gem 'quiet_assets'    # less noise in development log
+  gem 'letter_opener', '1.4.1'    # for email tests in development
   # gem 'rack-mini-profiler'
   # gem 'flamegraph'    # mini-profiler flamegraph extension (?pp=flamegraph)
 end
