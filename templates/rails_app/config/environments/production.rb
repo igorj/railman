@@ -88,10 +88,6 @@ Rails.application.configure do
   }
   config.action_mailer.default_url_options = { host: ENV['SMTP_DEFAULT_URL'] }
 
-  config.middleware.use ExceptionNotification::Rack,
-    email: {
-      email_prefix: ENV['EXCEPTION_NOTIFICATION_EMAIL_PREFIX'],
-      sender_address: ENV['EXCEPTION_NOTIFICATION_SENDER'],
-      exception_recipients: ENV['ADMIN_EMAIL']
-    }
+  # Use sidekiq as active job backend
+  config.active_job.queue_adapter = :sidekiq
 end

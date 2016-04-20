@@ -20,7 +20,9 @@ gem 'active_link_to', '1.0.3'    # automatically mark navigation link as active
 gem 'dalli'   # memcached client
 gem 'kgio'    # gives dalli 20-30% performance boost
 
-# todo add sidekiq for backgroud jobs
+gem 'sidekiq', '4.1.1'    # backgroud jobs
+gem 'redis-namespace', '1.5.2'    # share same redis instance for multiple applications
+gem 'sinatra', '1.4.6', :require => false    # for sidekiq-web
 
 gem 'unicorn', '4.8.3'  # use unicorn as production server
 gem 'unicorn-rails', '1.1.0'  # use unicorn as local server

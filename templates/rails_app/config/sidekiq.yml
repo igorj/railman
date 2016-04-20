@@ -1,0 +1,14 @@
+# Configuration file for Sidekiq.
+# Options here can still be overridden by cmd line args.
+# Run with: sidekiq -C config/sidekiq.yml
+---
+:verbose: true
+#:pidfile: tmp/pids/sidekiq.pid
+:concurrency: 3
+:production:
+  :concurency: 10
+:timeout: 60
+:queues:
+  - paperclip
+  - default
+  - mailers

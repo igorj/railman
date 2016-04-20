@@ -38,4 +38,12 @@ Eye.application APP_NAME do
       stop_command 'kill -QUIT {PID}'
     end
   end
+
+  process :sidekiq do
+    start_command "./bin/sidekiq -e #{RAILS_ENV} -C ./config/sidekiq.yml"
+    pid_file "./tmp/pids/sidekiq.pid"
+    stdall "log/sidekiq.log"
+    daemonize true
+    stop_signals [:USR1, 0, :TERM, 10.seconds, :KILL]
+  end
 end

@@ -1,0 +1,4 @@
+update_tuidang_stats:
+  cron: "*/60 * * * *"
+  class: "UpdateTuidangStats"
+  queue: default
