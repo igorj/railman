@@ -1,0 +1,4 @@
+#recurring_hard_job:
+#  every: 10s
+#  class: "HardJob"
+#  queue: default
