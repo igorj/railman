@@ -1,0 +1,9 @@
+require 'test_helper'
+
+class HomepageTest < WebTest
+  test 'homepage' do
+    visit '/'
+    screenshot 'homepage'
+    must_have_content 'Welcome to: <%= @class_name %>'
+  end
+end

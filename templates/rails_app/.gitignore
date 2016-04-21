@@ -5,3 +5,7 @@
 !/log/.keep
 /tmp
 .env
+
+/test/coverage
+/test/reports
+/test/screenshots
