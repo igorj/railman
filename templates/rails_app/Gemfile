@@ -43,12 +43,14 @@ end
 
 group :test do
   gem 'minitest-reporters', '1.1.7'   # generate xml for jenkins
+  gem 'minitest-screenshot-reporter', '0.0.2'   # generate screenshots on capybara errors
   gem 'simplecov', require: false     # generate coverage reports
   gem 'simplecov-rcov', '0.2.3', require: false   # generate coverage reports for jenkins
   gem 'capybara', '2.6.0'   # dsl for browser tests
   gem 'capybara_minitest_spec', '1.0.5'   # capybara rspec-style matchers (must_have...)
   gem 'selenium-webdriver', '2.49.0'      # use real browser for webtests
   gem 'poltergeist', '1.8.1'      # headless tests with phantom.js
+  gem 'database_cleaner', '1.5.2'     # cleanup test database after every integration test
 end
 
 # put additional application-specific gems to Gemfile.local
