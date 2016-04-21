@@ -17,8 +17,8 @@ gem 'bootstrap_form', '2.3.0'    # form helper for twitter bootstrap
 gem 'bootstrap-datepicker-rails', '1.4.0'     # bootstrap-datepicker
 gem 'active_link_to', '1.0.3'    # automatically mark navigation link as active
 
-gem 'dalli'   # memcached client
-gem 'kgio'    # gives dalli 20-30% performance boost
+gem 'dalli', '2.7.6'  # memcached client
+gem 'kgio', '2.10.0'  # gives dalli 20-30% performance boost
 
 gem 'sidekiq', '4.1.1'    # backgroud jobs
 gem 'sidekiq-scheduler', '2.0.6'  # scheduled background jobs
