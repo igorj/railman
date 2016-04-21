@@ -1,4 +1,6 @@
 require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
+
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_token]
 Sidekiq::Web.set :sessions, Rails.application.config.session_options
 
@@ -12,7 +14,7 @@ class AdminConstraint
 end
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+  mount Sidekiq::Web => '/sidekiq' # todo , :constraints => AdminConstraint.new
 
   root 'home#index'
 end
