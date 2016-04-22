@@ -1,11 +1,14 @@
 .DS_Store
-/.idea
-/.bundle
-/log/*
+.idea
+.bundle
+log/*
 !/log/.keep
-/tmp
+tmp
 .env
 
-/test/coverage
-/test/reports
-/test/screenshots
+test/coverage
+test/reports
+test/screenshots
+
+.sass-cache
+public/assets
