@@ -35,6 +35,7 @@ Or install it yourself as:
 ## Usage
 
 Run `railman new APP_NAME` to create new rails application.
+Run `railman upgrade APP_NAME` to upgrade existing rails application.
 
 
 ## Development

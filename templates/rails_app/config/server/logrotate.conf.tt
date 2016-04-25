@@ -1,4 +1,4 @@
-/home/deploy/apps/<%= app_name %>/log/*.log {
+/home/deploy/apps/<%= @config.app_name %>/log/*.log {
   daily
   missingok
   rotate 9

@@ -2,13 +2,13 @@
 rsa-key-size = 4096
 
 # this address will receive renewal reminders, IIRC
-email = <%= @admin_email %>
+email = <%= @config.admin_email %>
 
 # Generate certificates for the specified domains
-domains = <%= @domains.join(',') %>
+domains = <%= @config.domains.join(',') %>
 
 # turn off the ncurses UI, we want this to be run as a cronjob
 text = True
 
 # authenticate by placing a file in the webroot (under .well-known/acme-challenge/) and then letting LE fetch it
-webroot-path = /home/deploy/apps/<%= app_name %>
+webroot-path = /home/deploy/apps/<%= @config.app_name %>

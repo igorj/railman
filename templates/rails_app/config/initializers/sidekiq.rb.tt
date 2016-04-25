@@ -1,7 +1,7 @@
 require 'sidekiq/scheduler'
 
-# Configure Sidekiq Redis connection to use the '<%= app_name %>' namespace
-redis_config = { url: 'redis://localhost:6379', namespace: '<%= app_name %>' }
+# Configure Sidekiq Redis connection to use the '<%= @config.app_name %>' namespace
+redis_config = { url: 'redis://localhost:6379', namespace: '<%= @config.app_name %>:' }
 
 Sidekiq.configure_server do |config|
   config.redis = redis_config

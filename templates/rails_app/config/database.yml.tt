@@ -3,7 +3,7 @@ development:
   encoding: unicode
   port: 5432
   host: localhost
-  database: <%= app_name %>_development
+  database: <%= @config.app_name %>_development
   username: <%%= ENV['DB_USER'] %>
   password: <%%= ENV['DB_PASSWORD'] %>
   pool: 5
@@ -14,7 +14,7 @@ test:
   encoding: unicode
   port: 5432
   host: localhost
-  database: <%= app_name %>_test
+  database: <%= @config.app_name %>_test
   username: <%%= ENV['DB_USER'] %>
   password: <%%= ENV['DB_PASSWORD'] %>
   pool: 5
@@ -25,7 +25,7 @@ production:
   encoding: unicode
   port: 5432
   host: localhost
-  database: <%= app_name %>_production
+  database: <%= @config.app_name %>_production
   username: <%%= ENV['DB_USER'] %>
   password: <%%= ENV['DB_PASSWORD'] %>
   pool: 15

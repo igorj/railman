@@ -1,13 +1,13 @@
-upstream <%= app_name %> {
-	server unix:/tmp/unicorn.<%= app_name %>.sock fail_timeout=0;
+upstream <%= @config.app_name %> {
+	server unix:/tmp/unicorn.<%= @config.app_name %>.sock fail_timeout=0;
 }
 
 server {
   listen 443 ssl;
-  server_name <%= @domain %>;
+  server_name <%= @config.domain %>;
 
   index index.html;
-  root /home/deploy/apps/<%= app_name %>/public;
+  root /home/deploy/apps/<%= @config.app_name %>/public;
   try_files $uri/index.html $uri @app;
 
   location @app {
@@ -18,7 +18,7 @@ server {
 
     proxy_set_header Host $http_host;
     proxy_redirect off;
-    proxy_pass http://<%= app_name %>;
+    proxy_pass http://<%= @config.app_name %>;
   }
 
   client_max_body_size 100m;
@@ -37,17 +37,17 @@ server {
   }
 
   location ~ ^/(assets)/  {
-    root /home/deploy/apps/<%= app_name %>/public;
+    root /home/deploy/apps/<%= @config.app_name %>/public;
     gzip_static on; # to serve pre-gzipped version
     expires max;
     add_header Cache-Control public;
   }
 
   # Let's Encrypt certificates
-  ssl_certificate /etc/letsencrypt/live/<%= @domain %>/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/<%= @domain %>/privkey.pem;
+  ssl_certificate /etc/letsencrypt/live/<%= @config.domain %>/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/<%= @config.domain %>/privkey.pem;
 
-  location /home/deploy/apps/<%= app_name %>/public/.well-known {
+  location /home/deploy/apps/<%= @config.app_name %>/public/.well-known {
   	allow all;
   }
 }
@@ -55,18 +55,18 @@ server {
 
 server {
   listen 80;
-  server_name <%= @domains.join(' ') %>;
-  return 301 https://<%= @domain %>$request_uri;
+  server_name <%= @config.domains.join(' ') %>;
+  return 301 https://<%= @config.domain %>$request_uri;
 }
 
-<% if @www_domain %>
+<% if @config.www_domain %>
 server {
   listen 443 ssl;
-  server_name <%= @www_domain %>;
-  return 301 $scheme://<%= @domain %>$request_uri;
+  server_name <%= @config.www_domain %>;
+  return 301 $scheme://<%= @config.domain %>$request_uri;
 
   # Let's Encrypt certificates
-  ssl_certificate /etc/letsencrypt/live/<%= @domain %>/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/<%= @domain %>/privkey.pem;
+  ssl_certificate /etc/letsencrypt/live/<%= @config.domain %>/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/<%= @config.domain %>/privkey.pem;
 }
 <% end %>

@@ -1,7 +1,7 @@
 # Capistrano deployment tasks
 lock '3.4.1'
 
-set :application, '<%= app_name %>'
+set :application, '<%= @config.app_name %>'
 set :repo_url, '<%= @repository.origin %>'
 set :deploy_to, "/home/deploy/apps/#{fetch(:application)}"
 set :rbenv_home, '/home/deploy/.rbenv'

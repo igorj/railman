@@ -1,9 +1,9 @@
 # Eye configuration file (https://github.com/kostya/eye)
 # Load with: 'eye l Eyefile'
 # Watch processes: 'eye w'
-# Stop all processes: 'eye stop <%= app_name %>'
-# Start all processes: 'eye start <%= app_name %>'
-# Restart unicorn: 'eye restart <%= app_name %>:unicorn'
+# Stop all processes: 'eye stop <%= @config.app_name %>'
+# Start all processes: 'eye start <%= @config.app_name %>'
+# Restart unicorn: 'eye restart <%= @config.app_name %>:unicorn'
 
 APP_ROOT = File.expand_path('..', __FILE__)
 

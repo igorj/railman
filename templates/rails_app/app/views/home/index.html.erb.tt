@@ -1,1 +1,1 @@
-<p>Welcome to: <%= @class_name %></p>
+<p>Welcome to: <%= @config.class_name %></p>

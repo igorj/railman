@@ -6,7 +6,7 @@ require 'dotenv'
 Dotenv.load
 
 if ENV['UNICORN_BEHIND_NGINX']
-  listen '/tmp/unicorn.<%= app_name %>.sock'
+  listen '/tmp/unicorn.<%= @config.app_name %>.sock'
 else
   listen Integer(ENV['UNICORN_PORT'] || 3000)
 end
