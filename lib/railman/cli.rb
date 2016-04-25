@@ -17,6 +17,22 @@ module Railman
     desc "new APPNAME", "Create new rails application named APPNAME"
     def new(app_name)
       say "Create a new rails application named: #{app_name}", :green
+      apply_rails_template(app_name)
+      say "The rails application '#{app_name}' was successfully created.", :green
+      say "Please check the settings in .env", :blue
+    end
+
+    desc "upgrade APPNAME", "Upgrade the rails upplication named APPNAME"
+    def upgrade(app_name)
+      puts "TODO upgrade the rails application: #{app_name}"
+      apply_rails_template(app_name, false)
+      say "The rails application '#{app_name}' was successfully upgraded.", :green
+      say "Please check the settings in .env", :blue
+    end
+
+    private
+
+    def apply_rails_template(app_name, create = true)
       @app_name = app_name
       @class_name = Thor::Util.camel_case(app_name)
       @admin_email = ask("What is the adminitrator email address?")
@@ -42,16 +58,11 @@ module Railman
       Dir.chdir app_name do
         run "bundle install"
         run "chmod +x bin/*"
-        create_local_git_repository
-        create_remote_git_repository(@repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
+        if create
+          create_local_git_repository
+          create_remote_git_repository(@repository) if yes?("Do you want me to create bitbucket repository named #{app_name}? (y/n)")
+        end
       end
-      say "The rails application '#{app_name}' was successfully created.", :green
-      say "Please check the settings in .env", :blue
-    end
-
-    desc "update APPNAME", "Update the rails upplication named APPNAME"
-    def update(app_name)
-      puts "TODO update the rails application: #{app_name}"
     end
   end
 end
