@@ -49,6 +49,7 @@ module Railman
         config.www_domain = nil
         config.domains = [config.domain]
       end
+      config.server = ask("What is the name of the production server?")
       config
     end
 
