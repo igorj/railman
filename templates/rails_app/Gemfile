@@ -19,6 +19,7 @@ gem 'active_link_to', '1.0.3'    # automatically mark navigation link as active
 
 gem 'dalli', '2.7.6'  # memcached client
 gem 'kgio', '2.10.0'  # gives dalli 20-30% performance boost
+gem 'redis-session-store'   # store sessions in redis
 
 gem 'sidekiq', '4.1.1'    # backgroud jobs
 gem 'sidekiq-scheduler', '2.0.6'  # scheduled background jobs

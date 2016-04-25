@@ -1,3 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Rails.application.config.session_store :cookie_store, key: '_<%= app_name %>_session'
+Rails.application.config.session_store :redis_session_store, {
+  key: "_<%= app_name %>_session",
+  redis: { key_prefix: "<%= app_name %>:", expire_after: 2.minutes }
+}
