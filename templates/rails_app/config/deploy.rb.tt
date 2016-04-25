@@ -48,9 +48,8 @@ task :setup do
           execute :service, "nginx restart"
         else
           execute :cp, '.env.example.production', '.env'
-          execute "sed -i -e 's/TODO: generate with: rake secret/#{SecureRandom.hex(64)}/g' .en"
+          execute "sed -i -e 's/TODO: generate with: rake secret/#{SecureRandom.hex(64)}/g' #{fetch(:deploy_to)}/.env"
           warn "TODO: Edit .env and modify your database and smtp settings."
-          warn "TODO: Create rails secret token with 'rake secret' and insert it into .env"
           warn "TODO: Create ssl certificates by running the following command as root: /etc/letsencrypt/generate_letsencrypt.sh"
           warn "TODO: Run 'cap ENV setup' again!"
         end
