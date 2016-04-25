@@ -1,6 +1,8 @@
 # Capistrano deployment tasks
 lock '3.4.1'
 
+require 'securerandom'
+
 set :application, '<%= @config.app_name %>'
 set :repo_url, '<%= @repository.origin %>'
 set :deploy_to, "/home/deploy/apps/#{fetch(:application)}"
@@ -45,7 +47,9 @@ task :setup do
           execute :eye, :start, fetch(:application)
           execute :service, "nginx restart"
         else
-          warn "TODO: Create .env on the server by copying from .env.example.production and modify your database and smtp settings."
+          execute :cp, '.env.example.production', '.env'
+          execute "sed -i -e 's/TODO: generate with: rake secret/#{SecureRandom.hex(64)}/g' .en"
+          warn "TODO: Edit .env and modify your database and smtp settings."
           warn "TODO: Create rails secret token with 'rake secret' and insert it into .env"
           warn "TODO: Create ssl certificates by running the following command as root: /etc/letsencrypt/generate_letsencrypt.sh"
           warn "TODO: Run 'cap ENV setup' again!"
