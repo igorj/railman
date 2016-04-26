@@ -3,6 +3,7 @@ require 'yaml'
 require 'creategem'
 require 'railman/config'
 require 'railman/secret'
+require 'railman/version'
 
 module Railman
   class CLI < Thor
@@ -62,6 +63,7 @@ module Railman
     end
 
     def save_config(config)
+      config.version = Railman::VERSION
       File.open File.join(config.app_name, ".railman"), "w" do |file|
         file.write config.to_yaml
       end
@@ -80,10 +82,10 @@ module Railman
         @rake_secret = Railman::Secret.generate_secret
         @unicorn_behind_nginx = false
         template "rails_app/.env.example.development.tt", "#{@config.app_name}/.env"
-        save_config(@config)
       end
+      save_config(@config)
       Dir.chdir @config.app_name do
-        run "bundle install"
+        run "bundle update"
         run "chmod +x bin/*"
         if create
           create_local_git_repository

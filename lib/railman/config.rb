@@ -4,6 +4,6 @@ require 'yaml'
 # It is saved in .railman in the generated application, so that it can be used to upgrade the application later.
 module Railman
   class Config
-    attr_accessor :app_name, :class_name, :admin_email, :domain, :www_domain, :domains, :server
+    attr_accessor :version, :app_name, :class_name, :admin_email, :domain, :www_domain, :domains, :server
   end
 end
