@@ -82,6 +82,7 @@ module Railman
         @unicorn_behind_nginx = false
         template "rails_app/.env.example.development.tt", "#{@config.app_name}/.env"
         @rake_secret = Railman::Secret.generate_secret
+        remove_file "#{@config.app_name}/.env.example.test"
         template "rails_app/.env.example.test.tt", "#{@config.app_name}/.env.example.test"
       else
         directory "rails_app", @config.app_name, exclude_pattern: /home_controller|index\.html\.erb/
