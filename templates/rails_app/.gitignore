@@ -12,3 +12,5 @@ test/screenshots
 
 .sass-cache
 public/assets
+
+brakeman-output.tabs
