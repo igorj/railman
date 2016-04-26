@@ -23,7 +23,7 @@ module Railman
       config = create_config(app_name)
       apply_rails_template(config)
       say "The rails application '#{app_name}' was successfully created.", :green
-      say "Please check the settings in .env", :blue
+      say "Please check the settings in .env and run 'rake db:create' to create the local databases.", :blue
     end
 
     desc "upgrade APPNAME", "Upgrade the rails upplication named APPNAME"
@@ -32,7 +32,6 @@ module Railman
       config = load_config(app_name)
       apply_rails_template(config, false)
       say "The rails application '#{app_name}' was successfully upgraded.", :green
-      say "Please check the settings in .env", :blue
     end
 
     private
@@ -77,11 +76,13 @@ module Railman
                                               gem_server_url: gem_server_url(:bitbucket))
       @rake_secret = "TODO: generate with: rake secret"
       @unicorn_behind_nginx = true
-      directory "rails_app", @config.app_name
       if create
+        directory "rails_app", @config.app_name
         @rake_secret = Railman::Secret.generate_secret
         @unicorn_behind_nginx = false
         template "rails_app/.env.example.development.tt", "#{@config.app_name}/.env"
+      else
+        directory "rails_app", @config.app_name, exclude_pattern: /home_controller|index\.html\.erb/
       end
       save_config(@config)
       Dir.chdir @config.app_name do
