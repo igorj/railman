@@ -2,3 +2,4 @@
 set :server, '<%= @config.server %>'
 set :user, 'deploy'
 server fetch(:server), user: fetch(:user), roles: %w{web app db}
+# set :deploy_branch, 'anotherbranch'

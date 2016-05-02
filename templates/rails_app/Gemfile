@@ -29,7 +29,7 @@ gem 'sinatra', '1.4.6', :require => false    # for sidekiq-web
 gem 'unicorn', '4.8.3'  # use unicorn as production server
 gem 'unicorn-rails', '1.1.0'  # use unicorn as local server
 
-gem 'capistrano', '3.4.1'   # capistrano deployment
+gem 'railman-deployment'   # capistrano deployment
 
 gem 'exception_notification', '4.1.2' # exception notification per email
 
