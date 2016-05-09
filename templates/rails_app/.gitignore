@@ -6,6 +6,7 @@ log/*
 tmp
 .env
 
+coverage
 test/coverage
 test/reports
 test/screenshots
