@@ -23,7 +23,7 @@
 </head>
 <body>
   <div id="content">
-    <div id="messages"><%%= render "layouts/messages" %></div>
+    <%= ui_flash_messages id: 'mesages' %>
     <%%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <script>

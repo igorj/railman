@@ -1,9 +1,0 @@
-<% flash.each do |name, msg| %>
-  <div class="ui <%= name %> message">
-    <i class="close icon"></i>
-    <div class="ui header">
-      <i class="<%= name == 'error' || name == 'warning' ? :warning : :info %> circle icon"></i>
-      <div class="content"><%= msg %></div>
-    </div>
-  </div>
-<% end %>
