@@ -10,7 +10,7 @@
   <%%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-  <style data-turbolinks-track="true"><%= yield :stylesheets %></style>
+  <style data-turbolinks-track="true"><%%= yield :stylesheets %></style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
