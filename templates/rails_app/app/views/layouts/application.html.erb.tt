@@ -10,6 +10,8 @@
   <%%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
+  <style data-turbolinks-track="true"><%= yield :stylesheets %></style>
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -20,9 +22,9 @@
   <%%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <%%= render 'layouts/messages' %>
-    <%%= yield %>
+  <div id="content">
+    <div id="messages"><%= render "layouts/messages" %></div>
+    <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <script>
     window.current_language = "<%%= I18n.locale %>";

@@ -14,6 +14,5 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap-sprockets
-//= require bootstrap-datepicker
+//= require semantic-rails-ui
 //= require_tree .

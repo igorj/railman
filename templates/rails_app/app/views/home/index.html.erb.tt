@@ -1,1 +1,1 @@
-<p>Welcome to: <%= @config.class_name %></p>
+<%= ui_icon_header "Welcome to <%= @config.class_name %> :-)", "home" %>
