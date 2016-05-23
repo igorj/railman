@@ -12,7 +12,16 @@
 [codeclimate]: https://codeclimate.com/github/igorj/railman
 [coveralls]: https://coveralls.io/r/igorj/railman
 
-Railman generates new rails applications based on a customized template. Railman is currently work in progress. 
+Railman generates new rails applications based on a customized template and ready for deployment in production. 
+It can also update existing applications when railman-template changes.
+ 
+The generated rails application includes: 
+- semantic-rails-ui gem with modified scaffolds, 
+- .env configuration
+- deployment configuration, 
+- sidekiq background jobs and scheduled jobs
+- jenkins scripts
+- test infrastructure for capybara headless webtests
 
 
 ## Installation
