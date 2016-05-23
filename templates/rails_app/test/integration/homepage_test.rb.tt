@@ -4,6 +4,6 @@ class HomepageTest < WebTest
   test 'homepage' do
     visit '/'
     screenshot 'homepage'
-    must_have_content 'Welcome to: <%= @config.class_name %>'
+    must_have_content 'Welcome to <%= @config.class_name %> :-)'
   end
 end
