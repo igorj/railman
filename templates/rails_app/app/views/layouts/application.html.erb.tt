@@ -23,7 +23,7 @@
 </head>
 <body>
   <div id="content">
-    <%= ui_flash_messages %>
+    <%%= ui_flash_messages %>
     <%%= content_for?(:content) ? yield(:content) : yield %>
   </div>
   <script>
