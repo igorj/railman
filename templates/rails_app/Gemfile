@@ -5,11 +5,6 @@ gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
 gem 'rails', '4.2.6'
 gem 'pg', '0.18.2'
 
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'jquery-rails'
-gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 gem 'semantic-rails-ui'   # semantic-ui + simple_form + rails helpers
@@ -31,6 +26,7 @@ gem 'railman-deployment', '~> 0.2'   # capistrano deployment
 gem 'exception_notification', '4.1.2' # exception notification per email
 
 group :development do
+  gem 'annotate', '~> 2.7.1'   # add comments to models with db column information
   gem 'better_errors'   # better error pages in development
   gem 'binding_of_caller'   # repl on the error page
   gem 'quiet_assets'    # less noise in development log
