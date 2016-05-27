@@ -40,7 +40,7 @@ module Railman
       config = Railman::Config.new
       config.app_name = app_name
       config.class_name = Thor::Util.camel_case(app_name)
-      config.admin_email = ask("What is the adminitrator email address?")
+      config.admin_email = ask("What is the administrator email address?")
       config.domain = ask("What is the url of the application (without http and www)?")
       if yes?("Do you want me to configure www.#{config.domain} domain to be redirected to #{config.domain}? (y/n)")
         config.www_domain = "www.#{config.domain}"
