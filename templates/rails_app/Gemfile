@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
 gem 'pg', '0.18.2'
 
 gem 'semantic-rails-ui'   # semantic-ui + simple_form + rails helpers
