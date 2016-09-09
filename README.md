@@ -43,9 +43,10 @@ Or install it yourself as:
 
 ## Usage
 
-Run `railman new APP_NAME` to create new rails application.
+Run `railman new APP_NAME [--public]` to create new rails application.
 Run `railman upgrade APP_NAME` to upgrade existing rails application.
 
+If you use the `public` option, a public git repository is created, otherwise a repository will be private (default)
 
 ## Development
 

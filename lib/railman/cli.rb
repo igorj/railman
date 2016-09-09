@@ -17,7 +17,9 @@ module Railman
       File.expand_path('../../../templates', __FILE__)
     end
 
-    desc "new APPNAME", "Create new rails application named APPNAME"
+    desc "new APPNAME [--public] [--bitbucket]", "Create new rails application named APPNAME"
+    option :public, type: :boolean, default: false, desc: "When true, the remote git repository is made public, otherwise the repository is private (default)"
+    option :bitbucket, type: :boolean, default: false, desc: "When true, Bitbucket repository is created, otherwise Github (default)"
     def new(app_name)
       say "Create a new rails application named: #{app_name}", :green
       config = create_config(app_name)
@@ -50,6 +52,8 @@ module Railman
         config.domains = [config.domain]
       end
       config.server = ask("What is the name of the production server?")
+      config.private = !options[:public]
+      config.vendor = options[:bitbucket] ? :bitbucket : :github
       config
     end
 
@@ -70,10 +74,11 @@ module Railman
 
     def apply_rails_template(config, create = true)
       @config = config
-      @repository = Creategem::Repository.new(vendor: :bitbucket,
-                                              user: git_repository_user_name(:bitbucket),
-                                              name: @config.app_name,
-                                              gem_server_url: gem_server_url(:bitbucket))
+      @repository = Creategem::Repository.new(vendor: config.vendor,
+                                              user: git_repository_user_name(config.vendor.to_sym),
+                                              name: config.app_name,
+                                              gem_server_url: gem_server_url(config.vendor.to_sym),
+                                              private: config.private)
       @rake_secret = "TODO: generate with: rake secret"
       @unicorn_behind_nginx = true
       if create
@@ -93,7 +98,7 @@ module Railman
         run "chmod +x bin/*"
         if create
           create_local_git_repository
-          create_remote_git_repository(@repository) if yes?("Do you want me to create bitbucket repository named #{@config.app_name}? (y/n)")
+          create_remote_git_repository(@repository) if yes?("Do you want me to create #{config.vendor} repository named #{@config.app_name}? (y/n)")
         end
       end
     end
