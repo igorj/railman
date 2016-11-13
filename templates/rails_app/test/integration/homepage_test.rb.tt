@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'webtest_helper'
 
 class HomepageTest < WebTest
   test 'homepage' do
