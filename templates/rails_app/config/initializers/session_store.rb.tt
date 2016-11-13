@@ -1,6 +1,7 @@
 # Be sure to restart your server when you modify this file.
 
-Rails.application.config.session_store :redis_session_store, {
+Rails.application.config.session_store :redis_store,
+  redis_server: "redis://#{ENV.fetch('REDIS_SERVER')}/<%= @config.app_name %>:#{Rails.env}:sessions",
   key: "_<%= @config.app_name %>_session",
-  redis: { key_prefix: "<%= @config.app_name %>:", expire_after: 30.minutes }
-}
+  expire_after: 30.minutes
+

@@ -1,0 +1,2 @@
+$redis = Redis::Namespace.new("<%= @config.app_name %>:#{Rails.env}:app", redis: Redis.new(url: "redis://#{ENV.fetch('REDIS_SERVER')}"))
+$redis_root = Redis::Namespace.new("<%= @config.app_name %>:#{Rails.env}", redis: Redis.new(url: "redis://#{ENV.fetch('REDIS_SERVER')}"))

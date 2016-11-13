@@ -7,9 +7,10 @@ gem 'pg', '0.18.2'
 
 gem 'semantic-rails-ui'   # semantic-ui + simple_form + rails helpers
 
-gem 'dalli', '2.7.6'  # memcached client
-gem 'kgio', '2.10.0'  # gives dalli 20-30% performance boost
-gem 'redis-session-store'   # store sessions in redis
+gem 'hiredis', '0.6.1'
+gem 'redis', '3.3.1', require: %w(redis redis/connection/hiredis)
+gem 'redis-namespace', '1.5.2'
+gem 'redis-rails', '5.0.1'
 
 gem 'sidekiq', '4.1.1'    # backgroud jobs
 gem 'sidekiq-scheduler', '2.0.6'  # scheduled background jobs
