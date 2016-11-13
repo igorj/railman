@@ -19,6 +19,8 @@ server {
     proxy_set_header Host $http_host;
     proxy_redirect off;
     proxy_pass http://<%= @config.app_name %>;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
   }
 
   client_max_body_size 100m;
@@ -33,6 +35,7 @@ server {
     if ($request_filename ~* ^.*?\.(eot)|(ttf)|(woff)|(svg)|(otf)$){
       add_header Access-Control-Allow-Origin *;
     }
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
     break;
   }
 
@@ -41,6 +44,7 @@ server {
     gzip_static on; # to serve pre-gzipped version
     expires max;
     add_header Cache-Control public;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
   }
 
   # Let's Encrypt certificates
