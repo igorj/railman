@@ -74,7 +74,7 @@ module Railman
 
     def apply_rails_template(config, create = true)
       @config = config
-      @repository = Creategem::Repository.new(vendor: config.vendor,
+      @repository = Creategem::Repository.new(vendor: config.vendor.to_sym,
                                               user: git_repository_user_name(config.vendor.to_sym),
                                               name: config.app_name,
                                               gem_server_url: gem_server_url(config.vendor.to_sym),
