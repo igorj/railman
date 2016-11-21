@@ -43,6 +43,7 @@ group :test do
   gem 'selenium-webdriver', '2.49.0'      # use real browser for webtests
   gem 'poltergeist', '1.8.1'      # headless tests with phantom.js
   gem 'database_cleaner', '1.5.2'     # cleanup test database after every integration test
+  gem 'nokogiri', '1.6.8'  # todo problems installing 1.6.8.1 on mac
 end
 
 # put additional application-specific gems to Gemfile.local
