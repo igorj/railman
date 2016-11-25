@@ -13,5 +13,6 @@ test/screenshots
 
 .sass-cache
 public/assets
+refile_uploads
 
 brakeman-output.tabs
