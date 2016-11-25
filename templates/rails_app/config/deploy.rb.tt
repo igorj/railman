@@ -2,5 +2,5 @@
 
 set :application, '<%= @config.app_name %>'
 set :repo_url, '<%= @repository.origin %>'
-# append :sync_dirs, 'public/system', 'public/files'
 set :log_level, :info
+# append :sync_dirs, 'public/system', 'public/files'
