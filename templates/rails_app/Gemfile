@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
 
