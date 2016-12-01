@@ -25,6 +25,8 @@ gem 'railman-deployment', '~> 0.2'   # capistrano deployment
 
 gem 'exception_notification', '4.1.2' # exception notification per email
 
+gem 'lograge', '~> 0.4.1'  # one-line-per-request log messages
+
 group :development do
   gem 'annotate', '~> 2.7.1'   # add comments to models with db column information
   gem 'better_errors'   # better error pages in development

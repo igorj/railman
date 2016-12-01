@@ -1,5 +1,5 @@
-# Logger Formatter mit Timestamp und in Farbe
-# übernommen von hier: https://cbpowell.wordpress.com/2013/08/09/beautiful-logging-for-ruby-on-rails-4
+# Logger formatter with timestamp and color
+# source: https://cbpowell.wordpress.com/2013/08/09/beautiful-logging-for-ruby-on-rails-4
 #
 
 class ActiveSupport::Logger::SimpleFormatter
@@ -11,4 +11,13 @@ class ActiveSupport::Logger::SimpleFormatter
     color = SEVERITY_TO_COLOR_MAP[severity]
     "\033[0;37m#{formatted_time}\033[0m [\033[#{color}m#{formatted_severity}\033[0m] #{msg.strip} (pid:#{$$})\n"
   end
+end
+
+# Use lograge to log single line per request
+Rails.application.config.lograge.enabled = true
+Rails.application.config.lograge.custom_options = lambda do |event|
+  exceptions = %w(controller action format id)
+  {
+      params: event.payload[:params].except(*exceptions)
+  }
 end
