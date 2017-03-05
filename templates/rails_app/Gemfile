@@ -1,36 +1,45 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '~> 5.1.0.beta1'
 gem 'pg', '0.18.2'
 
 gem 'semantic-rails-ui'   # semantic-ui + simple_form + rails helpers
 
+gem 'webpacker', github: 'rails/webpacker'
+
 gem 'hiredis', '0.6.1'
 gem 'redis', '3.3.1', require: %w(redis redis/connection/hiredis)
-gem 'redis-namespace', '1.5.2'
 gem 'redis-rails', '5.0.1'
 
 gem 'sidekiq', '4.1.1'    # backgroud jobs
 gem 'sidekiq-scheduler', '2.0.6'  # scheduled background jobs
 gem 'redis-namespace', '1.5.2'    # share same redis instance for multiple applications
-gem 'sinatra', '1.4.6', :require => false    # for sidekiq-web
+gem 'sinatra', '2.0.0.beta2', :require => false    # for sidekiq-web
 
-gem 'unicorn', '4.8.3'  # use unicorn as production server
-gem 'unicorn-rails', '1.1.0'  # use unicorn as local server
+gem 'puma', '~> 3.7'
 
 gem 'railman-deployment', '~> 0.2'   # capistrano deployment
 
-gem 'exception_notification', '4.1.2' # exception notification per email
+gem 'exception_notification', '4.2.1' # exception notification per email
 
 gem 'lograge', '~> 0.4.1'  # one-line-per-request log messages
 
 group :development do
-  gem 'annotate', '~> 2.7.1'   # add comments to models with db column information
   gem 'better_errors'   # better error pages in development
   gem 'binding_of_caller'   # repl on the error page
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'annotate', '~> 2.7.1'   # add comments to models with db column information
   gem 'letter_opener', '1.4.1'    # for email tests in development
   # gem 'rack-mini-profiler'
   # gem 'flamegraph'    # mini-profiler flamegraph extension (?pp=flamegraph)
@@ -41,12 +50,11 @@ group :test do
   gem 'minitest-screenshot-reporter', '0.0.2'   # generate screenshots on capybara errors
   gem 'simplecov', require: false     # generate coverage reports
   gem 'simplecov-rcov', '0.2.3', require: false   # generate coverage reports for jenkins
-  gem 'capybara', '2.6.0'   # dsl for browser tests
+  gem 'capybara', '2.12.1'   # dsl for browser tests
   gem 'capybara_minitest_spec', '1.0.5'   # capybara rspec-style matchers (must_have...)
-  gem 'selenium-webdriver', '2.49.0'      # use real browser for webtests
+  gem 'selenium-webdriver', '3.2.2'      # use real browser for webtests
   gem 'poltergeist', '1.8.1'      # headless tests with phantom.js
   gem 'database_cleaner', '1.5.2'     # cleanup test database after every integration test
-  gem 'nokogiri', '1.6.8'  # todo problems installing 1.6.8.1 on mac
 end
 
 # put additional application-specific gems to Gemfile.local

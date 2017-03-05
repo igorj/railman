@@ -91,6 +91,13 @@ module Railman
         template "rails_app/.env.example.test.tt", "#{@config.app_name}/.env.example.test"
       else
         directory "rails_app", @config.app_name, exclude_pattern: /home_controller|index\.html\.erb/
+        # delete files that shouldn't exist in the new version
+        remove_file "#{@config.app_name}/config/unicorn.rb"
+        remove_file "#{@config.app_name}/bin/unicorn"
+        remove_file "#{@config.app_name}/bin/unicorn_rails"
+        remove_file "#{@config.app_name}/app/jobs/.keep"
+        remove_file "#{@config.app_name}/app/models/.keep"
+        remove_dir "#{@config.app_name}/vendor/assets"
       end
       save_config(@config)
       Dir.chdir @config.app_name do
