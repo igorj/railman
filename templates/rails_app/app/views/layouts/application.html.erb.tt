@@ -28,7 +28,7 @@
 
     <div id='app'></div>
   </div>
-  <%= javascript_pack_tag 'application' %>
+  <%%= javascript_pack_tag 'application' %>
   <script>
     window.current_language = "<%%= I18n.locale %>";
     window.date_format = "<%%= I18n.t('date.formats.datepicker') %>";
