@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://<%= ENV.fetch('REDIS_SERVER') %>
+  url: redis://<%%= ENV.fetch('REDIS_SERVER') %>
   channel_prefix: <%= @config.app_name %>_production
