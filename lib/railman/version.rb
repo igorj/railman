@@ -1,3 +1,3 @@
 module Railman
-  VERSION = '0.6.20'
+  VERSION = '1.0.0'
 end
