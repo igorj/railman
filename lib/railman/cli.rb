@@ -102,6 +102,7 @@ module Railman
       save_config(@config)
       Dir.chdir @config.app_name do
         run "bundle update"
+        run "yarn install"
         run "chmod +x bin/*"
         if create
           create_local_git_repository
