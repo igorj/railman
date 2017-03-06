@@ -97,6 +97,7 @@ module Railman
         remove_file "#{@config.app_name}/bin/unicorn_rails"
         remove_file "#{@config.app_name}/app/jobs/.keep"
         remove_file "#{@config.app_name}/app/models/.keep"
+        remove_file "#{@config.app_name}/test/webtest_helper.rb"
         remove_dir "#{@config.app_name}/vendor/assets"
       end
       save_config(@config)

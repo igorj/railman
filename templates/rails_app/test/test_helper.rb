@@ -7,10 +7,9 @@ require 'rails/test_help'
 
 # use minitest-reporters to create xmls for jenkins and nicer terminal reporting
 require 'minitest/reporters'
-require 'minitest/reporters/screenshot_reporter'
+
 Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new,
-                          Minitest::Reporters::JUnitReporter.new,
-                          Minitest::Reporters::ScreenshotReporter.new]
+                          Minitest::Reporters::JUnitReporter.new]
 
 # default test class for unit tests
 class UnitTest < ActiveSupport::TestCase

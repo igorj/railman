@@ -1,0 +1,8 @@
+require 'application_system_test_case'
+
+class HomepageTest < ApplicationSystemTestCase
+  test 'homepage' do
+    visit '/'
+    assert_text 'Welcome to <%= @config.class_name %> :-)'
+  end
+end
