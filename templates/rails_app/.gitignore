@@ -2,8 +2,9 @@
 .idea
 .bundle
 log/*
+tmp/*
 !/log/.keep
-tmp
+!/tmp/.keep
 .env
 
 coverage
@@ -13,6 +14,11 @@ test/screenshots
 
 .sass-cache
 public/assets
+public/packs
 refile_uploads
 
+/node_modules
+/yarn-error.log
+
 brakeman-output.tabs
+.byebug_history

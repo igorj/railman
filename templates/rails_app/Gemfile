@@ -6,23 +6,26 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'dotenv-rails', '2.1.1', require: 'dotenv/rails-now' # load ENV from .env
+gem 'dotenv-rails', '2.2.1', require: 'dotenv/rails-now' # load ENV from .env
 
-gem 'rails', '~> 5.1.0.beta1'
+gem 'rails', '~> 5.1.0'
 gem 'pg', '0.18.2'
 
-gem 'semantic-rails-ui'   # semantic-ui + simple_form + rails helpers
+gem 'railman-ui'   # bulma css framework + rails helpers
 
-gem 'webpacker', '1.0.0'
+gem 'webpacker', '1.2'
+
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+# gem 'turbolinks', '~> 5'
 
 gem 'hiredis', '0.6.1'
 gem 'redis', '3.3.1', require: %w(redis redis/connection/hiredis)
+gem 'redis-namespace', '1.5.2'    # share same redis instance for multiple applications
 gem 'redis-rails', '5.0.1'
 
 gem 'sidekiq', '4.1.1'    # backgroud jobs
 gem 'sidekiq-scheduler', '2.0.6'  # scheduled background jobs
-gem 'redis-namespace', '1.5.2'    # share same redis instance for multiple applications
-gem 'sinatra', '2.0.0.beta2', :require => false    # for sidekiq-web
+gem 'sinatra', '2.0.0', :require => false    # for sidekiq-web
 
 gem 'puma', '~> 3.7'
 
@@ -30,15 +33,14 @@ gem 'railman-deployment', '~> 0.2'   # capistrano deployment
 
 gem 'exception_notification', '4.2.1' # exception notification per email
 
-gem 'lograge', '~> 0.4.1'  # one-line-per-request log messages
+gem 'lograge', '~> 0.5.0'  # one-line-per-request log messages
 
 group :development do
   gem 'better_errors'   # better error pages in development
   gem 'binding_of_caller'   # repl on the error page
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'annotate', '~> 2.7.1'   # add comments to models with db column information
   gem 'letter_opener', '1.4.1'    # for email tests in development
   # gem 'rack-mini-profiler'
@@ -49,9 +51,9 @@ group :test do
   gem 'minitest-reporters', '1.1.7'   # generate xml for jenkins
   gem 'simplecov', require: false     # generate coverage reports
   gem 'simplecov-rcov', '0.2.3', require: false   # generate coverage reports for jenkins
-  gem 'capybara', '2.12.1'   # dsl for browser tests
-  gem 'selenium-webdriver', '3.2.2'      # use real browser for webtests
-  gem 'poltergeist', '1.8.1'      # headless tests with phantom.js
+  gem 'capybara', '2.14.0'   # dsl for browser tests
+  gem 'selenium-webdriver', '3.4.0'      # use real browser for webtests
+  gem 'poltergeist', '1.15.0'      # headless tests with phantom.js
 end
 
 # put additional application-specific gems to Gemfile.local

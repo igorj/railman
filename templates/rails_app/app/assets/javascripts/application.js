@@ -10,5 +10,5 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require semantic-rails-ui
+//= require railman-ui
 //= require_tree .
